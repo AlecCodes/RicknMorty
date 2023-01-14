@@ -10,7 +10,6 @@ const cors = require('cors')
 //CONNECTION
 ////////////////////////
 const mongoose = require('mongoose')
-const { Route } = require('react-router-dom')
 
 mongoose.connect(DATABASE_URL, {
     useUnifiedTopology: true,
