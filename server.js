@@ -55,6 +55,15 @@ app.get("/characters", async (req,res)=> {
     }
 })
 
+//Show route
+app.get("/characters/:id", async(req,res)=>{
+    try {
+        res.json(await Character.findById(req.params.id))
+    } catch(error){
+        res.status(400).json(error)
+    }
+})
+
 //Create Route
 app.post("/characters", async(req,res)=>{
     try{
@@ -64,7 +73,16 @@ app.post("/characters", async(req,res)=>{
     }
 })
 
-//Put route
+//Delete route
+app.delete("/characters/:id", async(req,res)=>{
+    try{
+        res.json(await Character.findByIdAndDelete(req.params.id))
+    } catch(error){
+        res.status(400).json(error)
+    }
+})
+
+//Edit route
 app.put("/characters/:id", async(req,res)=>{
     try{
         res.json(await Character.findByIdAndUpdate(req.params.id, req.body, {new: true}))
@@ -72,6 +90,9 @@ app.put("/characters/:id", async(req,res)=>{
         res.status(400).json(error)
     }
 })
+
+//
+
 
 //listener
 app.listen(PORT, ()=>console.log(`TURNING UP ON PORT ${PORT}`))
