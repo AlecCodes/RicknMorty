@@ -65,6 +65,7 @@ app.get("/characters/:id", async(req,res)=>{
 
 //Create Route
 app.post("/characters", async(req,res)=>{
+    req.body.isFunny = req.body.isFunny === 'on' ? true : false;
     try{
         res.json(await Character.create(req.body))
     } catch (error){
