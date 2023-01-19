@@ -54,6 +54,14 @@ app.get("/characters", async (req,res)=> {
     }
 })
 
+app.get('/nameFilter', (req,res)=>{
+    try{
+        res.json({Message: "Name filter route"})
+    } catch (error){
+        res.status(400).json(error)
+    }
+})
+
 //Show route
 app.get("/characters/:id", async(req,res)=>{
     try {
