@@ -7,10 +7,15 @@ const bcrypt = require('bcrypt')
 /////////////////////////
 const router = express.Router()
 
+router.get('/', (req,res)=>{
+    res.json({message: "you have hit the home route of our router for user authentication. try /signup or /login or /logout"})
+})
+
 router.post('/signup', async (req,res)=>{
     req.body.password = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
     //make new user in db
     User.create(req.body, (err,user) => {
+        //THIS SHOWS WUBALUB?
         res.redirect('/')
     })
 })

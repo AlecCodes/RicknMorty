@@ -7,6 +7,7 @@ const app = express()
 const DATABASE_URL = process.env.DATABASE_URL
 const cors = require('cors')
 const rmRouter = require('./controllers/rmapp')
+const authRouter = require('./controllers/authentication')
 const MongoStore = require('connect-mongo')
 
 
@@ -24,11 +25,11 @@ app.use(session({
 }))
 
 app.use('/characters', rmRouter)
-
+app.use('/userAuth', authRouter)
 
 //Landing route
 app.get('/',(req,res)=>{
-    res.json({message: "WUB A LUBDUBDBU"})
+    res.json({message: "WUB A LUBDUBDBU you hit the '/' route of rick n morty API, is that what you meant to do? U prolly got redirected damn it morty"})
 })
 
 //listener
