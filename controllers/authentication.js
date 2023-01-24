@@ -18,10 +18,7 @@ router.get('/username', async(req,res)=>{
 router.post('/signup', async (req,res)=>{
     req.body.password = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
     //make new user in db
-    User.create(req.body, (err,user) => {
-        //THIS SHOWS WUBALUB?
-        res.redirect('/')
-    })
+    User.create(req.body)
 })
 
 router.post('/login', async(req,res)=>{
@@ -35,7 +32,6 @@ router.post('/login', async(req,res)=>{
             if(result){
                 req.session.username = username
                 req.session.loggedIn = true
-                res.redirect('/')
             } else {
                 //WOULD THIS WORK?!
                 res.send('wrong password')
@@ -45,9 +41,7 @@ router.post('/login', async(req,res)=>{
 })
 
 router.get("/logout", (req,res)=>{
-    req.session.destroy((err) => {
-        res.redirect('/')
-    })
+    req.session.destroy()
 })
 
 module.exports = router
