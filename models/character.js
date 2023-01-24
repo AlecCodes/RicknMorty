@@ -9,7 +9,8 @@ const {Schema, model} = mongoose
 const CharacterSchema = new mongoose.Schema({
     name: String,
     image: String,
-    isFunny: Boolean
+    isFunny: Boolean,
+    creator: String,
 })
 
 const Character = mongoose.model("character", CharacterSchema)
