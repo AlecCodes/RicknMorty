@@ -36,6 +36,7 @@ router.get("/:id", async(req,res)=>{
 //Create Route
 router.post("/", async(req,res)=>{
     req.body.isFunny = req.body.isFunny === 'on' ? true : false;
+    // req.body.creator = req.session.username
     try{
         res.json(await Character.create(req.body))
     } catch (error){
